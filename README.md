@@ -8,6 +8,8 @@ A key glyph sits in the bar (default: right side):
 - **Hover** — tooltip with the active provider.
 - **IPC `launch`** — open the vault window immediately.
 
+<img width="404" height="546" alt="image" src="https://github.com/user-attachments/assets/4e0359d1-eac4-47e5-b2a9-b6cc2c815676" />
+
 ## Why a dedicated vault window
 
 Browser-extension popups are bundles inside each vendor's extension runtime (1Password's even requires its native-messaging desktop app) and cannot be loaded standalone. But every supported vendor ships a full-featured **web vault**, and this plugin gives that web vault a proper home:
