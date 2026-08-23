@@ -29,7 +29,7 @@ If a password-manager plugin offers you an "encrypted local cache" of secrets, i
 ## Install
 
 ```sh
-omarchy plugin add https://github.com/Somnius/Omarchy-Password-Store.git --enable
+omarchy plugin add https://github.com/Somnius/Password-Store-for-Omarchy.git --enable
 ```
 
 Then place the widget in the bar:

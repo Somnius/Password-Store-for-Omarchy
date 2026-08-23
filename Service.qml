@@ -8,7 +8,7 @@ Item {
   readonly property string home: Quickshell.env("HOME")
   readonly property string configDir: home + "/.config/omarchy/password-store"
   readonly property string configPath: configDir + "/config.json"
-  readonly property string repoUrl: "https://github.com/Somnius/Omarchy-Password-Store"
+  readonly property string repoUrl: "https://github.com/Somnius/Password-Store-for-Omarchy"
 
   readonly property var providers: ({
     bitwarden:   "https://vault.bitwarden.com",
