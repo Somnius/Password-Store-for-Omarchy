@@ -8,7 +8,7 @@ A key glyph sits in the bar (default: right side):
 - **Hover** — tooltip with the active provider.
 - **IPC `launch`** — open the vault window immediately.
 
-<img width="404" height="546" alt="image" src="https://github.com/user-attachments/assets/4e0359d1-eac4-47e5-b2a9-b6cc2c815676" />
+<img width="404" height="546" alt="Password Store panel" src="preview.png" />
 
 ## Why a dedicated vault window
 
@@ -25,6 +25,7 @@ The plugin is deliberately minimal:
 - **No credentials stored.** No passwords, no master password, no TOTP seeds, no encrypted blob, nothing — not in config, not in memory, not on disk.
 - **Unlocking happens inside the web vault.** Search, copy and autofill-within-the-vault are protected by your provider's own 2FA, device approvals and lock timers.
 - **One file written**: `~/.config/omarchy/password-store/config.json` — provider name, optional self-hosted URL, optional browser override. Nothing else.
+- **Bounded and validated inputs**: config reads stop at 32 KiB. URLs and browser overrides are capped at 4,096 characters, validated before entering plugin state and checked again before process launch. Invalid replacements leave the last accepted state intact.
 
 If a password-manager plugin offers you an "encrypted local cache" of secrets, it has also offered you a key-management problem. This one refuses the premise.
 
@@ -37,7 +38,7 @@ omarchy plugin add https://github.com/Somnius/Password-Store-for-Omarchy.git --e
 Then place the widget in the bar:
 
 ```sh
-omarchy bar plugin add lef.password-store --section right
+omarchy bar put lef.password-store --section right
 ```
 
 ### From a local checkout (development)
@@ -54,7 +55,7 @@ omarchy-shell shell rescanPlugins
 Validate at any time with:
 
 ```sh
-omarchy plugin validate ~/.config/omarchy/plugins/lef.password-store
+omarchy plugin validate "$PWD"
 ```
 
 ## Configuration
@@ -71,8 +72,8 @@ omarchy plugin validate ~/.config/omarchy/plugins/lef.password-store
 | Key | Values | Notes |
 |---|---|---|
 | `primaryVault` | `bitwarden` \| `vaultwarden` \| `1password` \| `lastpass` | Default: `bitwarden` |
-| `vaultUrl` | any https URL | Optional override; **required for Vaultwarden** |
-| `browser` | executable name or path | Default: auto-detect (`chromium`, then `brave`) |
+| `vaultUrl` | absolute URL, max 4,096 characters | HTTPS required except for loopback HTTP; **required for Vaultwarden** |
+| `browser` | executable name or absolute path, max 4,096 characters | Default: auto-detect (`chromium`, then `brave`) |
 
 ## IPC & keybindings
 
@@ -90,6 +91,7 @@ o.bind("SUPER + ALT + P", "Open password vault", "omarchy-shell lef.password-sto
 
 ## External dependencies
 
+- Perl (provided by Omarchy) for bounded config reads and atomic writes.
 - A Chromium-family browser for the app window: `chromium` or `brave` (auto-detected), otherwise any browser via `xdg-open`.
 - Network access to your chosen vault provider (the web vault itself handles all cryptography).
 

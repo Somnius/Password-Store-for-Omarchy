@@ -76,7 +76,7 @@ BarWidget {
     function toggle(): void { root.toggle() }
     function launch(): string {
       if (!root.ready) return "service not ready"
-      return root.service.openVault() ? "opening vault" : "no vault URL configured"
+      return root.service.openVault() ? "vault launch requested" : "no valid vault URL configured"
     }
     function status(): string {
       if (!root.ready) return "service not ready"
