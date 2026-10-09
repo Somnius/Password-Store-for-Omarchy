@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "lef.password-store",
   "name": "Password Store",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "lef",
   "license": "MIT",
   "description": "Quick launcher for your web password vault — Bitwarden, Vaultwarden (self-hosted), 1Password or LastPass. Stores no credentials, no master password, no secrets: sessions live in your browser.",

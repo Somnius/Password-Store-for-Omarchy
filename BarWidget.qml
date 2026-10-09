@@ -2,6 +2,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 import qs.Commons
+import qs.Commons as Commons
 import qs.Ui
 
 BarWidget {
@@ -40,7 +41,7 @@ BarWidget {
     // nf-fa-key; raw U+26BF renders as a tiny fallback glyph in the bar font.
     text: "\uf084"
     textFormat: Text.PlainText
-    color: root.bar ? root.bar.barForeground : Color.foreground
+    color: root.bar ? root.bar.barForeground : Commons.Color.foreground
     font.family: root.bar ? root.bar.fontFamily : Style.font.family
     font.pixelSize: Style.font.body
     opacity: root.ready ? 1 : 0.45
